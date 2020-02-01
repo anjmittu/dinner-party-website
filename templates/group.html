@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block header %} 
+
+    <div class="w3-center">
+        <h1 class="w3-wide" style="font-size:4.8em">{{ groupName }}</h1>
+    </div>
+
+{% endblock header %}
+
+{% block content %}
+    
+    <div class="w3-row-padding w3-center w3-margin">
+    <div class="w3-card-4"></div>
+        <div class="w3-row-padding">
+            
+            <h3>First Person</h3>
+            
+            <div class="w3-third">      
+                <input class="w3-input w3-border" placeholder="Name" type="text" required>
+            </div>
+
+            <div class="w3-third">      
+                <input class="w3-input  w3-border" placeholder="Phone Number" type="text" required>
+            </div>
+
+            <div class="w3-third">      
+                <input class="w3-input  w3-border" placeholder="Email" type="text" required>
+            </div>
+        </div>
+        <br>
+        <div class="w3-row-padding">
+            <div class="w3-half">
+                <input class="w3-input w3-border" placeholder="Dietary Restrictions" type="text" required>
+                <input id="cooks" class="w3-check" type="checkbox">
+                <label>Cooks?</label>
+            </div>
+
+            <div class="w3-half">
+                <input id="sunday" class="w3-check" type="checkbox">
+                <label>Sunday</label>
+                <input id="monday" class="w3-check" type="checkbox">
+                <label>Monday</label>
+                <input id="tuesday" class="w3-check" type="checkbox">
+                <label>Tuesday</label>
+                <input id="wednesay" class="w3-check" type="checkbox">
+                <label>Wednesday</label>
+                <br>
+                <input id="thurday" class="w3-check" type="checkbox">
+                <label>Thursday</label>
+                <input id="friday" class="w3-check" type="checkbox">
+                <label>Friday</label>
+                <input id="saturday" class="w3-check" type="checkbox">
+                <label>Saturday</label>
+            </div>
+        </div>
+    </div>
+    </div>
+
+{% endblock %}
