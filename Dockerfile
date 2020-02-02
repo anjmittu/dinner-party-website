@@ -8,6 +8,7 @@ RUN pip3 install flask-wtf
 RUN pip3 install pymongo dnspython
 RUN pip3 install requests
 
+COPY . /dinner-party
 
 WORKDIR "/dinner-party"
 ENTRYPOINT ["python3.6"]
