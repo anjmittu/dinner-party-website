@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 
-{% block header %} 
+{% block header %}
 
   <!-- Modal -->
 
@@ -25,20 +25,22 @@
       function createGroup(){
         window.location.href = '/createGroup?groupName='+document.getElementById('groupName').value;
       }
+      window.addEventListener('keydown',function(e){if(e.keyIdentifier=='U+000A'||e.keyIdentifier=='Enter'||e.keyCode==13){if(e.target.nodeName=='INPUT'&&e.target.type=='text'){e.preventDefault();return false;}}},true);
+
     </script>
 
     <!-- Container (User info) -->
-    <form>
+    <form">
       <div class="mdimg w3-display-container w3-opacity-min">
         <div class="w3-display-middle w3-text-white w3-wide">
           <h2>What's your Party Name?</h2>
-          <div class="w3-section">
-            <input id="groupName" class="w3-input" type="text" required placeholder="Group Name">
-          </div>
-          <div class="w3-center">
-          <button onclick="createGroup()" class="w3-button w3-black w3-center" type="button">
-            <i class="fa fa-paper-plane"></i> Get Cookin!
-          </button>
+            <div class="w3-section">
+              <input id="groupName" class="w3-input" type="text" required placeholder="Group Name">
+            </div>
+            <div class="w3-center">
+            <button onclick="createGroup()" class="w3-button w3-black w3-center" type="button">
+              <i class="fa fa-paper-plane"></i> Get Cookin!
+            </button>
           </div>
         </div>
       </div>

@@ -1,12 +1,15 @@
 <!DOCTYPE html>
+
 <html>
+  <!-- Header -->
+  <header style="flex-shrink:0;" class="w3-container w3-theme w3-padding" class="w3-col w3-container m2 w3-teal" id="myHeader">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-teal.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
-    <meta charset="UTF-8">
+    <!--<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/checkboxes.css')}}"></link> -->
 
     <style>
         body,h1 {font-family: "Montserrat", sans-serif}
@@ -23,19 +26,26 @@
           height: 100%;
         }
         body {
+          background-color: #dfebed;
           display: flex;
           flex-direction: column;
         }
         .content {
           flex: 1 0 auto;
         }
+        input {
+          border-radius: 25px;
+        }
+        .w3-card-4 {
+          border-radius: 25px 5px;
+          background-color: #f5f5f5;
+        }
+
     </style>
 
-    <!-- Header -->
-    <header style="flex-shrink:0;" class="w3-container w3-theme w3-padding" class="w3-col w3-container m2 w3-teal" id="myHeader">
         <div class="w3-hide-small">
             <div class="w3-bar w3-large w3-teal w3-opacity w3-hover-opacity-off" id="myNavbar">
-                <a href="/index" class="w3-bar-item w3-button">HOME</a>
+                <a href="/index" class="w3-bar-item w3-button w3-wide">DINNER PARTY</a>
             </div>
         </div>
 
@@ -43,7 +53,7 @@
             {% block header %} {% endblock %}
         </div>
 
-    </header>
+  </header>
 
     <body>
       <div class='content'>
@@ -65,7 +75,7 @@
 
     <!-- Footer -->
     <footer style="flex-shrink:0;" class="w3-container w3-theme-dark w3-padding-16">
-        <p>Powered by MangoDB, Google Cloud, Domain.com,Twilio & w3.css</p>
+        <p>Powered by MangoDB, Google Cloud, Domain.com, Twilio & w3.css</p>
         <div style="position:relative;bottom:20px;" class="w3-tooltip w3-right">
           <span class="w3-text w3-theme-light w3-padding">Go To Top</span>
           <a class="w3-text-white" href="#myHeader"><span class="w3-xlarge">
