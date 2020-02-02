@@ -10,18 +10,31 @@
 
     <style>
         body,h1 {font-family: "Montserrat", sans-serif}
-        .footer {
-         position: fixed;
-         left: 0;
-         bottom: 0;
-         width: 100%;
-       }
+       /* Modal Image */
+       .mdimg {
+          background-attachment: fixed;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-image: url("https://images.pexels.com/photos/5929/food-salad-dinner-eating.jpg?cs=srgb&dl=lunch-table-5929.jpg&fm=jp");
+          min-height: 400px;
+        }
+        html, body {
+          height: 100%;
+        }
+        body {
+          display: flex;
+          flex-direction: column;
+        }
+        .content {
+          flex: 1 0 auto;
+        }
     </style>
 
     <!-- Header -->
-    <header class="w3-container w3-theme w3-padding" class="w3-col w3-container m2 w3-teal" id="myHeader">
-        <div class="w3-top w3-hide-small">
-            <div class="w3-bar w3-xlarge w3-teal w3-opacity w3-hover-opacity-off" id="myNavbar">
+    <header style="flex-shrink:0;" class="w3-container w3-theme w3-padding" class="w3-col w3-container m2 w3-teal" id="myHeader">
+        <div class="w3-hide-small">
+            <div class="w3-bar w3-large w3-teal w3-opacity w3-hover-opacity-off" id="myNavbar">
                 <a href="/index" class="w3-bar-item w3-button">HOME</a>
             </div>
         </div>
@@ -33,7 +46,7 @@
     </header>
 
     <body>
-
+      <div class='content'>
         <div class="w3-row-padding">
             {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
@@ -47,16 +60,17 @@
         </div>
 
         {% block content %} {% endblock %}
+      </div>
     </body>
 
-    <!-- Footer 
-    <footer style="position:fixed; bottom:0; left:0; width:100%;" class="w3-container w3-theme-dark w3-padding-16">
+    <!-- Footer -->
+    <footer style="flex-shrink:0;" class="w3-container w3-theme-dark w3-padding-16">
         <p>Powered by MangoDB, Google Cloud, Domain.com,Twilio & w3.css</p>
         <div style="position:relative;bottom:20px;" class="w3-tooltip w3-right">
           <span class="w3-text w3-theme-light w3-padding">Go To Top</span>
           <a class="w3-text-white" href="#myHeader"><span class="w3-xlarge">
           <i class="fa fa-chevron-circle-up"></i></span></a>
         </div>
-    </footer> -->
+    </footer>
 
 </html>

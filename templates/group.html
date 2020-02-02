@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% block header %} 
+{% block header %}
 
     <div class="w3-center">
         <h1 class="w3-wide" style="font-size:4.8em">{{ groupName }}</h1>
@@ -35,7 +35,7 @@
                 $form.attr('id', $form.attr('id').replace(index, newIndex));
                 $form.data('index', newIndex);
 
-                
+
                 $newForm.find('label').each(function(idx) {
                     var $item = $(this);
 
@@ -120,8 +120,8 @@
 {% endblock header %}
 
 {% block content %}
-    
-    <form id="person-form" method="POST" action="" role="form" class="w3-row-padding w3-center w3-margin">
+
+    <form id="person-form" method="POST" role="form" class="w3-row-padding w3-center w3-margin">
 
         {{ form.hidden_tag() }}
 
@@ -131,23 +131,23 @@
 
                 <div id="person-{{ loop.index0 }}-form" class="subform" data-index="{{ loop.index0 }}">
                     <div class="w3-row-padding">
-                        
+
                         <h3>First Person</h3>
-                        
-                        <div class="w3-third">      
+
+                        <div class="w3-third">
                             {{ person.username(class="w3-input  w3-border", placeholder="Name", type="text") }}
                         </div>
 
-                        <div class="w3-third">      
+                        <div class="w3-third">
                             {{ person.phone_number(class="w3-input  w3-border", placeholder="Phone Number", type="text") }}
                         </div>
 
-                        <div class="w3-third">      
+                        <div class="w3-third">
                             {{ person.email(class="w3-input  w3-border", placeholder="Email", type="text") }}
                         </div>
 
                     </div>
-                
+
                     <br>
 
                     <div class="w3-row-padding">
@@ -158,35 +158,40 @@
                         </div>
 
                         <div class="w3-half">
-                            
+
                             <a class="remove w3-button w3-circle w3-large w3-theme"><i class="fa fa-minus"></i></a>
                         </div>
                     </div>
                 </div>
             {% endfor %}
         </div>
-        
+        <div class="w3-margin w3-center">
+
+            <a id="add" class="w3-button w3-circle w3-large w3-theme"><i class="fa fa-plus"></i></a>
+            {{ form.submit(class="w3-button w3-large w3-theme", text="Submit") }}
+
+        </div>
     </form>
 
     <div id="person-_-form" class="is-hidden" data-index="_">
         <div class="w3-row-padding">
-                        
+
             <h3>First Person</h3>
-            
-            <div class="w3-third">      
+
+            <div class="w3-third">
                 <input id="people-_-username" name="people-_-username" class="w3-input  w3-border" placeholder="Username" type="text"></label>
             </div>
 
-            <div class="w3-third">      
+            <div class="w3-third">
                 <input id="people-_-phone_number" name="people-_-phone_number" class="w3-input  w3-border" placeholder="Phone Number" type="text"></label>
             </div>
 
-            <div class="w3-third">      
+            <div class="w3-third">
                 <input id="people-_-email" name="people-_-email" class="w3-input  w3-border" placeholder="Email" type="text"></label>
             </div>
 
         </div>
-    
+
         <br>
 
         <div class="w3-row-padding">
@@ -197,17 +202,12 @@
             </div>
 
             <div class="w3-half">
-                
+
                 <a class="remove w3-button w3-circle w3-large w3-theme"><i class="fa fa-minus"></i></a>
             </div>
         </div>
     </div>
 
-    <div class="w3-margin w3-center">
-        
-        <a id="add" class="w3-button w3-circle w3-large w3-theme"><i class="fa fa-plus"></i></a> 
-        {{ form.submit(class="w3-button w3-large w3-theme", text="Submit") }}
 
-    </div>
 
 {% endblock %}
