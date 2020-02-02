@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block header %}
+<div class="w3-center">
+    <h1 class="w3-wide" style="font-size:2.8em">DINNER PARTY</h1>
+</div>
+
+{% endblock header %}
+
+{% block content %}
+
+<div class="w3-center">
+  <br>
+  <a href="/demo/reset" style="font-size:28px;" class="w3-button w3-theme w3-margin">Reset</a>
+  <a href="/demo/default" style="font-size:28px;" class="w3-button w3-theme w3-margin">Default</a>
+  <a href="/demo/triggerSMS" style="font-size:28px;" class="w3-button w3-theme w3-margin">Trigger SMS</a>
+  <br><br>
+<div>
+
+  <!-- Photo Grid -->
+  <div class="w3-row" id="myGrid" style="max-height:550px; overflow:hidden;">
+    <div class="w3-third">
+      <img src="https://images.pexels.com/photos/277253/pexels-photo-277253.jpeg?cs=srgb&dl=anise-aroma-art-bazaar-277253.jpg&fm=jpg" style="width:100%">
+      <img src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?cs=srgb&dl=flat-lay-photography-of-vegetable-salad-on-plate-1640777.jpg&fm=jpg" style="width:100%">
+      <img src="https://images.pexels.com/photos/691114/pexels-photo-691114.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" style="width:100%">
+    </div>
+
+    <div class="w3-third" >
+      <img src="https://images.pexels.com/photos/5938/food-salad-healthy-lunch.jpg?cs=srgb&dl=spinach-chicken-pomegranate-salad-5938.jpg&fm=jpg" style="width:100%">
+      <img src="https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?cs=srgb&dl=top-view-photo-of-food-dessert-1099680.jpg&fm=jpg" style="width:100%">
+      <img src="https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?cs=srgb&dl=top-view-of-food-1640772.jpg&fm=jpg" style="width:100%">
+      <img src="https://images.pexels.com/photos/1435909/pexels-photo-1435909.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" style="width:100%">
+    </div>
+
+    <div class="w3-third">
+      <img src="https://images.pexels.com/photos/1109197/pexels-photo-1109197.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" style="width:100%">
+      <img src="https://images.pexels.com/photos/704569/pexels-photo-704569.jpeg?cs=srgb&dl=cooked-food-704569.jpg&fm=jpg" style="width:100%">
+      </div>
+  </div>
+
+{% endblock %}

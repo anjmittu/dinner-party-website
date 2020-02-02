@@ -30,24 +30,28 @@ def createGroup():
         #print(form.people.entries[0].username)
     return render_template("group.html", groupName=groupName, form=form)
 
+@app.route("/")
+@app.route("/demo")
+def demo():
+    return render_template("demo.html")
 
 @app.route("/")
-@app.route("/admin/reset")
+@app.route("/demo/reset")
 def resetroute():
     reset()
-    return redirect(url_for("admin"))
+    return redirect(url_for("demo"))
 
 @app.route("/")
-@app.route("/admin/default")
+@app.route("/demo/default")
 def default():
     defaultGroup()
-    return redirect(url_for("admin"))
+    return redirect(url_for("demo"))
 
 @app.route("/")
-@app.route("/admin/triggerSMS")
+@app.route("/demo/triggerSMS")
 def triggerSMSroute():
     triggerSMS()
-    return redirect(url_for("admin"))
+    return redirect(url_for("demo"))
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=80)
