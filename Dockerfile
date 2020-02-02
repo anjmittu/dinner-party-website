@@ -6,6 +6,7 @@ RUN apt-get install -y python3.6 python3-pip
 RUN pip3 install flask
 RUN pip3 install flask-wtf
 RUN pip3 install pymongo dnspython
+RUN pip3 install requests
 
 
 WORKDIR "/dinner-party"

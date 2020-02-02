@@ -1,6 +1,6 @@
 from flask import Flask, render_template, flash, redirect, request, url_for
 from groupForm import CreateGroupForm
-from initGroup import initGroup
+from initGroup import initGroup, reset, defaultGroup, triggerSMS
 
 app = Flask(__name__)
 
@@ -30,6 +30,24 @@ def createGroup():
         #print(form.people.entries[0].username)
     return render_template("group.html", groupName=groupName, form=form)
 
+
+@app.route("/")
+@app.route("/admin/reset")
+def resetroute():
+    reset()
+    return redirect(url_for("admin"))
+
+@app.route("/")
+@app.route("/admin/default")
+def default():
+    defaultGroup()
+    return redirect(url_for("admin"))
+
+@app.route("/")
+@app.route("/admin/triggerSMS")
+def triggerSMSroute():
+    triggerSMS()
+    return redirect(url_for("admin"))
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=80)

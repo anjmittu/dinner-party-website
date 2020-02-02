@@ -1,6 +1,7 @@
 import pymongo
 import os
 from datetime import datetime, timedelta
+import requests 
 
 def initGroup(group):
     client = pymongo.MongoClient(os.getenv("MONGODB_URL"))
@@ -47,3 +48,88 @@ def initGroup(group):
             {"_id": person},
             {"$set": {"party": id}}
         )
+
+def reset():
+    client = pymongo.MongoClient(os.getenv("MONGODB_URL"))
+    db = client["diner-party"]
+
+    # Clear collections
+
+    db["parties"].remove({})
+    db["people"].remove({})
+    db["events"].remove({})
+
+def defaultGroup():
+    client = pymongo.MongoClient(os.getenv("MONGODB_URL"))
+    db = client["diner-party"]
+
+    people = []
+
+    people.append(db["people"].insert_one(
+        {
+            "name": "Nick",
+            "number": "+12023847411",
+            "email": "nick@mittudev.com",
+            "cook_days": [0,1,2,3,4,5,6],
+            "last_cooked": datetime.now() - timedelta(days=1),
+            "percentage": 50,
+            "dietary_preferences": ["vegetarian"],
+            "last_question": 0
+        }
+    ).inserted_id)
+
+    people.append(db["people"].insert_one(
+        {
+            "name": "Anjali",
+            "number": "+13019563002",
+            "email": "anjmittu@gmail.com",
+            "cook_days": [0,1,2,3,4,5,6],
+            "last_cooked": datetime.now() - timedelta(days=2),
+            "percentage": 50,
+            "dietary_preferences": ["vegetarian", "vegan"],
+            "last_question": 0
+        }
+    ).inserted_id)
+
+    people.append(db["people"].insert_one(
+        {
+            "name": "Ajay",
+            "number": "+12405954543",
+            "email": "ajaymysore95@gmail.com",
+            "cook_days": [],
+            "last_cooked": datetime.now() - timedelta(days=1),
+            "percentage": 50,
+            "dietary_preferences": ["vegetarian"],
+            "last_question": 0
+        }
+    ).inserted_id)
+
+    people.append(db["people"].insert_one(
+        {
+            "name": "Rohan",
+            "number": "+12407082233",
+            "email": "rdmittu@gmail.com",
+            "cook_days": [],
+            "last_cooked": datetime.now() - timedelta(days=1),
+            "percentage": 50,
+            "dietary_preferences": ["vegetarian", "vegan"],
+            "last_question": 0
+        }
+    ).inserted_id)
+
+    id = db["parties"].insert_one(
+        {
+            "name": "Dinner Party",
+            "people": people,
+            "event": None
+        }
+    ).inserted_id
+
+    for person in people:
+        db["people"].update_one(
+            {"_id": person},
+            {"$set": {"party": id}}
+        )
+
+def triggerSMS():
+    requests.get(url = os.getenv("TRIGGER_URL"))
