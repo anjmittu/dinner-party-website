@@ -12,6 +12,8 @@ class PersonForm(Form):
 
 class CreateGroupForm(FlaskForm):
 
+    groupName = StringField("Group Name", validators=[])
+    
     people = FieldList(
         FormField(PersonForm),
         min_entries=2,

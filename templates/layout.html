@@ -50,7 +50,7 @@
         <div class="w3-row-padding">
             {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
-                    {% for category, message in messages %}
+                    {% for message in messages %}
                         <div class="w3-green">
                             {{ message }}
                         </div>

@@ -20,12 +20,13 @@ def layout():
 @app.route("/createGroup", methods=['GET', 'POST'])
 def createGroup():
     form = CreateGroupForm()
-    groupName = "GroupName"
+    groupName = request.args.get('groupName') if request.args.get('groupName') else "GroupName"
     if form.validate_on_submit():
-        flash(f'Account created for {form.username.data}!', 'success')
+        flash(f'Account created for {form.username.data}!')
         return redirect(url_for('index'))
     if request.method=="POST" and form.validate():
-        flash(f'Account created for {form.username.data}!', 'success')
+        flash(f'Account created for {form.groupName.data}!')
+        return redirect(url_for('index'))
         #print(form.people.entries)
         #print(form.people.entries[0].username)
     return render_template("group.html", groupName=groupName, form=form)

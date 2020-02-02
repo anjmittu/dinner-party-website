@@ -122,8 +122,12 @@
 {% block content %}
 
     <form id="person-form" method="POST" role="form" class="w3-row-padding w3-center w3-margin">
-      {{ form.csrf_token }}
+        
+        {{ form.csrf_token }}
         {{ form.hidden_tag() }}
+        {{ form.groupName(class="is-hidden", value=groupName)}}
+
+        <h2>People</h2>
 
         <div id="people-container">
 
@@ -131,8 +135,6 @@
 
                 <div id="person-{{ loop.index0 }}-form" class="subform" data-index="{{ loop.index0 }}">
                     <div class="w3-row-padding">
-
-                        <h3>First Person</h3>
 
                         <div class="w3-third">
                             {{ person.username(class="w3-input  w3-border", placeholder="Name", type="text") }}
@@ -153,7 +155,7 @@
                     <div class="w3-row-padding">
                         <div class="w3-half">
                             {{ person.restrictions(class="w3-input  w3-border", placeholder="Dietary Restrictions", type="text") }}
-                            {{ person.isChef(class="w3-input  w3-border", type="checkbox") }}
+                            {{ person.isChef(class="w3-input  w3-border w3-margin", type="checkbox") }}
                             <label>Cooks?</label>
                         </div>
 
@@ -163,6 +165,7 @@
                         </div>
                     </div>
                 </div>
+                <hr>
             {% endfor %}
         </div>
         <div class="w3-margin w3-center">
@@ -175,8 +178,6 @@
 
     <div id="person-_-form" class="is-hidden" data-index="_">
         <div class="w3-row-padding">
-
-            <h3>First Person</h3>
 
             <div class="w3-third">
                 <input id="people-_-username" name="people-_-username" class="w3-input  w3-border" placeholder="Username" type="text"></label>
@@ -206,6 +207,7 @@
                 <a class="remove w3-button w3-circle w3-large w3-theme"><i class="fa fa-minus"></i></a>
             </div>
         </div>
+        <hr>
     </div>
 
 

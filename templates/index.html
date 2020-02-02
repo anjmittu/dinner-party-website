@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 
+
 {% block header %} 
 
   <!-- Modal -->
@@ -20,16 +21,22 @@
       <h4>Sign Up</h4>
     </header>
 
+    <script>
+      function createGroup(){
+        window.location.href = '/createGroup?groupName='+document.getElementById('groupName').value;
+      }
+    </script>
+
     <!-- Container (User info) -->
     <form>
       <div class="mdimg w3-display-container w3-opacity-min">
         <div class="w3-display-middle w3-text-white w3-wide">
           <h2>What's your Party Name?</h2>
           <div class="w3-section">
-            <input class="w3-input" type="text" required placeholder="Group Name">
+            <input id="groupName" class="w3-input" type="text" required placeholder="Group Name">
           </div>
           <div class="w3-center">
-          <button class="w3-button w3-black w3-center" type="submit">
+          <button onclick="createGroup()" class="w3-button w3-black w3-center" type="button">
             <i class="fa fa-paper-plane"></i> Get Cookin!
           </button>
           </div>
