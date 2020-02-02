@@ -1,5 +1,6 @@
-from flask import Flask, render_template, flash, redirect, request
+from flask import Flask, render_template, flash, redirect, request, url_for
 from groupForm import CreateGroupForm
+from initGroup import initGroup
 
 app = Flask(__name__)
 
@@ -22,10 +23,8 @@ def createGroup():
     form = CreateGroupForm()
     groupName = request.args.get('groupName') if request.args.get('groupName') else "GroupName"
     if form.validate_on_submit():
-        flash(f'Account created for {form.username.data}!')
-        return redirect(url_for('index'))
-    if request.method=="POST" and form.validate():
         flash(f'Account created for {form.groupName.data}!')
+        initGroup(form)
         return redirect(url_for('index'))
         #print(form.people.entries)
         #print(form.people.entries[0].username)
