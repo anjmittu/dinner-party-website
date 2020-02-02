@@ -155,13 +155,26 @@
                     <div class="w3-row-padding">
                         <div class="w3-half">
                             {{ person.restrictions(class="w3-input  w3-border", placeholder="Dietary Restrictions", type="text") }}
-                            {{ person.isChef(class="w3-input  w3-border w3-margin", type="checkbox") }}
+                            {{ person.isChef(class="w3-check", type="checkbox") }}
                             <label>Cooks?</label>
                         </div>
 
                         <div class="w3-half">
-
-                            <a class="remove w3-button w3-circle w3-large w3-theme"><i class="fa fa-minus"></i></a>
+                            Mon:
+                            {{ person.mon(class="w3-check", type="checkbox", ) }}
+                            Tues:
+                            {{ person.tues(class="w3-check", type="checkbox") }}
+                            Wed:
+                            {{ person.wed(class="w3-check", type="checkbox") }}
+                            Thurs:
+                            {{ person.thurs(class="w3-check", type="checkbox") }}
+                            Fri:
+                            {{ person.fri(class="w3-check", type="checkbox") }}
+                            Sat:
+                            {{ person.sat(class="w3-check", type="checkbox") }}
+                            Sun:
+                            {{ person.sun(class="w3-check", type="checkbox") }}
+                            <a class="remove w3-button w3-circle w3-large w3-theme w3-margin"><i class="fa fa-minus"></i></a>
                         </div>
                     </div>
                 </div>
@@ -198,13 +211,26 @@
         <div class="w3-row-padding">
             <div class="w3-half">
                 <input id="people-_-restrictions" name="people-_-restrictions" class="w3-input  w3-border" placeholder="Dietary Restrictions" type="text"></label>
-                <input id="people-_-isChef" name="people-_-isChef" class="w3-input  w3-border" placeholder="Chef" type="checkbox">
+                <input id="people-_-isChef" name="people-_-isChef" class="w3-check" placeholder="Chef" type="checkbox">
                 <label for="">Cooks?</label>
             </div>
 
             <div class="w3-half">
-
-                <a class="remove w3-button w3-circle w3-large w3-theme"><i class="fa fa-minus"></i></a>
+                Mon:
+                <input class="w3-check" id="people-_-mon" name="people-_-mon" type="checkbox" value="y">
+                Tues:
+                <input class="w3-check" id="people-_-tues" name="people-_-tues" type="checkbox" value="y">
+                Wed:
+                <input class="w3-check" id="people-_-wed" name="people-_-wed" type="checkbox" value="y">
+                Thurs:
+                <input class="w3-check" id="people-_-thurs" name="people-_-thurs" type="checkbox" value="y">
+                Fri:
+                <input class="w3-check" id="people-_-fri" name="people-_-fri" type="checkbox" value="y">
+                Sat:
+                <input class="w3-check" id="people-_-sat" name="people-_-sat" type="checkbox" value="y">
+                Sun:
+                <input class="w3-check" id="people-_-sun" name="people-_-sun" type="checkbox" value="y">
+                <a class="remove w3-button w3-circle w3-large w3-theme w3-margin"><i class="fa fa-minus"></i></a>
             </div>
         </div>
         <hr>

@@ -8,7 +8,14 @@ class PersonForm(Form):
     phone_number = StringField("Phone Number", validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
     restrictions = StringField("Dietary Restrictions", validators=[])
-    isChef = BooleanField('Chef', validators=[])
+    isChef = BooleanField('Chef')
+    mon = BooleanField("Monday")
+    tues = BooleanField("Tuesday")
+    wed = BooleanField("Wedesnesday")
+    thurs = BooleanField("Thursday")
+    fri = BooleanField("Friday")
+    sat = BooleanField("Saturday")
+    sun = BooleanField("Sunday")
 
 class CreateGroupForm(FlaskForm):
 
