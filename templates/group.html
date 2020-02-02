@@ -6,59 +6,208 @@
         <h1 class="w3-wide" style="font-size:4.8em">{{ groupName }}</h1>
     </div>
 
+    <style>
+        .is-hidden {
+            display: none;
+        }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script>
+        /**
+         * Adjust the indices of form fields when removing items.
+         */
+        function adjustIndices(removedIndex) {
+            var $forms = $('.subform');
+
+            $forms.each(function(i) {
+                var $form = $(this);
+                var index = parseInt($form.data('index'));
+                var newIndex = index - 1;
+
+                if (index < removedIndex) {
+                    // Skip
+                    return true;
+                }
+
+                // Change ID in form itself
+                $form.attr('id', $form.attr('id').replace(index, newIndex));
+                $form.data('index', newIndex);
+
+                
+                $newForm.find('label').each(function(idx) {
+                    var $item = $(this);
+
+                    $item.attr('for', $item.attr('for').replace(index, newIndex));
+                    //$item.attr('name', $item.attr('name').replace('_', newIndex));
+                });
+            });
+        }
+
+        /**
+         * Remove a subform.
+         */
+        function removeForm() {
+            var $removedForm = $(this).closest('.subform');
+            var removedIndex = parseInt($removedForm.data('index'));
+
+            $removedForm.remove();
+
+            // Update indices
+            adjustIndices(removedIndex);
+        }
+
+        /**
+         * Add a new subform.
+         */
+        function addForm() {
+            var $templateForm = $('#person-_-form');
+
+            if (!$templateForm) {
+                console.log('[ERROR] Cannot find template');
+                return;
+            }
+
+            // Get Last index
+            var $lastForm = $('.subform').last();
+
+            var newIndex = 0;
+
+            if ($lastForm.length > 0) {
+                newIndex = parseInt($lastForm.data('index')) + 1;
+            }
+
+            // Maximum of 20 subforms
+            if (newIndex > 15) {
+                console.log('[WARNING] Reached maximum number of elements');
+                return;
+            }
+
+            // Add elements
+            var $newForm = $templateForm.clone();
+
+            $newForm.attr('id', $newForm.attr('id').replace('_', newIndex));
+            $newForm.data('index', newIndex);
+
+            $newForm.find('label').each(function(idx) {
+                var $item = $(this);
+
+                $item.attr('for', $item.attr('for').replace('_', newIndex));
+                //$item.attr('name', $item.attr('name').replace('_', newIndex));
+            });
+            $newForm.find('input').each(function(idx) {
+                var $item = $(this);
+
+                $item.attr('id', $item.attr('id').replace('_', newIndex));
+                $item.attr('name', $item.attr('name').replace('_', newIndex));
+            });
+
+            // Append
+            $('#people-container').append($newForm);
+            $newForm.addClass('subform');
+            $newForm.removeClass('is-hidden');
+
+            $newForm.find('.remove').click(removeForm);
+        }
+
+        $(document).ready(function() {
+            $('#add').click(addForm);
+            $('.remove').click(removeForm);
+        });
+    </script>
+
 {% endblock header %}
 
 {% block content %}
     
-    <div class="w3-row-padding w3-center w3-margin">
-    <div class="w3-card-4"></div>
+    <form id="person-form" method="POST" action="" role="form" class="w3-row-padding w3-center w3-margin">
+
+        {{ form.hidden_tag() }}
+
+        <div id="people-container">
+
+            {% for person in form.people %}
+
+                <div id="person-{{ loop.index0 }}-form" class="subform" data-index="{{ loop.index0 }}">
+                    <div class="w3-row-padding">
+                        
+                        <h3>First Person</h3>
+                        
+                        <div class="w3-third">      
+                            {{ person.username(class="w3-input  w3-border", placeholder="Name", type="text") }}
+                        </div>
+
+                        <div class="w3-third">      
+                            {{ person.phone_number(class="w3-input  w3-border", placeholder="Phone Number", type="text") }}
+                        </div>
+
+                        <div class="w3-third">      
+                            {{ person.email(class="w3-input  w3-border", placeholder="Email", type="text") }}
+                        </div>
+
+                    </div>
+                
+                    <br>
+
+                    <div class="w3-row-padding">
+                        <div class="w3-half">
+                            {{ person.restrictions(class="w3-input  w3-border", placeholder="Dietary Restrictions", type="text") }}
+                            {{ person.isChef(class="w3-input  w3-border", type="checkbox") }}
+                            <label>Cooks?</label>
+                        </div>
+
+                        <div class="w3-half">
+                            
+                            <a class="remove w3-button w3-circle w3-large w3-theme"><i class="fa fa-minus"></i></a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        
+    </form>
+
+    <div id="person-_-form" class="is-hidden" data-index="_">
         <div class="w3-row-padding">
-            
+                        
             <h3>First Person</h3>
             
             <div class="w3-third">      
-                <input class="w3-input w3-border" placeholder="Name" type="text" required>
+                <input id="people-_-username" name="people-_-username" class="w3-input  w3-border" placeholder="Username" type="text"></label>
             </div>
 
             <div class="w3-third">      
-                <input class="w3-input  w3-border" placeholder="Phone Number" type="text" required>
+                <input id="people-_-phone_number" name="people-_-phone_number" class="w3-input  w3-border" placeholder="Phone Number" type="text"></label>
             </div>
 
             <div class="w3-third">      
-                <input class="w3-input  w3-border" placeholder="Email" type="text" required>
+                <input id="people-_-email" name="people-_-email" class="w3-input  w3-border" placeholder="Email" type="text"></label>
             </div>
+
         </div>
+    
         <br>
+
         <div class="w3-row-padding">
             <div class="w3-half">
-                <input class="w3-input w3-border" placeholder="Dietary Restrictions" type="text" required>
-                <input id="cooks" class="w3-check" type="checkbox">
-                <label>Cooks?</label>
+                <input id="people-_-restrictions" name="people-_-restrictions" class="w3-input  w3-border" placeholder="Dietary Restrictions" type="text"></label>
+                <input id="people-_-isChef" name="people-_-isChef" class="w3-input  w3-border" placeholder="Chef" type="checkbox">
+                <label for="">Cooks?</label>
             </div>
 
             <div class="w3-half">
-                <input id="sunday" class="w3-check" type="checkbox">
-                <label>Sunday</label>
-                <input id="monday" class="w3-check" type="checkbox">
-                <label>Monday</label>
-                <input id="tuesday" class="w3-check" type="checkbox">
-                <label>Tuesday</label>
-                <input id="wednesay" class="w3-check" type="checkbox">
-                <label>Wednesday</label>
-                <br>
-                <input id="thurday" class="w3-check" type="checkbox">
-                <label>Thursday</label>
-                <input id="friday" class="w3-check" type="checkbox">
-                <label>Friday</label>
-                <input id="saturday" class="w3-check" type="checkbox">
-                <label>Saturday</label>
+                
+                <a class="remove w3-button w3-circle w3-large w3-theme"><i class="fa fa-minus"></i></a>
             </div>
         </div>
-    </div>
     </div>
 
     <div class="w3-margin w3-center">
-        <a class="w3-button w3-circle w3-large w3-theme"><i class="fa fa-plus"></i></a> 
+        
+        <a id="add" class="w3-button w3-circle w3-large w3-theme"><i class="fa fa-plus"></i></a> 
+        {{ form.submit(class="w3-button w3-large w3-theme", text="Submit") }}
+
     </div>
 
 {% endblock %}
