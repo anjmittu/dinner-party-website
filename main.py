@@ -24,7 +24,7 @@ def createGroup():
         flash(f'Account created for {form.username.data}!', 'success')
         return redirect(url_for('index'))
     return render_template("group.html", groupName=groupName, form=form)
-   
+
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port="80")
+    app.run(debug=True, host='0.0.0.0', port=80)
