@@ -5,7 +5,7 @@ from wtforms.validators import DataRequired, Length, Email
 class PersonForm(Form):
 
     username = StringField('Username', validators=[DataRequired()])
-    phone_number = StringField("Phone Number", validators=[DataRequired])
+    phone_number = StringField("Phone Number", validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
     restrictions = StringField("Dietary Restrictions", validators=[])
     isChef = BooleanField('Chef', validators=[])

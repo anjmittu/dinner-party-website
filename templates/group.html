@@ -122,7 +122,7 @@
 {% block content %}
 
     <form id="person-form" method="POST" role="form" class="w3-row-padding w3-center w3-margin">
-
+      {{ form.csrf_token }}
         {{ form.hidden_tag() }}
 
         <div id="people-container">
